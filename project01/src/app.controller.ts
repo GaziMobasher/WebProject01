@@ -1,12 +1,26 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
-
 // src/app.controller.ts
-@Controller('api')
+import { Controller, Get } from '@nestjs/common';
+
+@Controller()
 export class AppController {
-  @Get('health')
-  healthCheck() {
-    return { status: 'ok', message: 'NestJS connected' };
+  @Get()
+  getHello() {
+    return {
+      message: 'Aura Shop API is running',
+      status: 'ok',
+      endpoints: {
+        shop: '/api/shop',
+        health: '/api/health',
+      },
+    };
+  }
+
+  @Get('api/health')
+  getHealth() {
+    return {
+      status: 'ok',
+      timestamp: new Date().toISOString(),
+    };
   }
 }
 

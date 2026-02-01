@@ -1,20 +1,77 @@
 // app/page.tsx
 'use client';
 
-async function getHealth() {
-  const res = await fetch('http://localhost:4000/api/health', {
-    cache: 'no-store',
-  });
+import { useEffect, useState } from 'react';
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch health');
-  }
-
-  return res.json();
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  badge: string;
+  badgeColor: string;
+  image: string;
+  tall?: boolean;
 }
 
+interface PageData {
+  hero: {
+    title: string;
+    subtitle: string;
+    description: string;
+    image: string;
+  };
+  products: Product[];
+}
 
 export default function HomePage() {
+  const [pageData, setPageData] = useState<PageData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:4000/api/shop', {
+          cache: 'no-store',
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+
+        const data = await response.json();
+        setPageData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An error occurred');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-gray-600 font-semibold">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !pageData) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-red-600 font-semibold">Error: {error || 'No data available'}</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative min-h-screen bg-[#0a0a0a] overflow-hidden">
       {/* Ambient Background Effects */}
@@ -74,7 +131,7 @@ export default function HomePage() {
                    }}>
                 <div className="aspect-[3/4] md:aspect-[4/5] relative">
                   <img
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyWGzjuF6kTKfH3SWauVT6bwEXXjDH5w5b2zPaXGxAV_gIV2jiV7JaPay8MMDVJZI_1q_ZFaTvkozZLvmOuiRph5MMUTylwhE9IrmwDUVjoI5nZRn9ZZ67wVA2CjlvdrjEBjT76VTmxurTx0eT86_SfyyyoAyPdol3uLN6KUQK8I9TmuspemK3ljD8HwAcDuQsFuEKe3Ck_SdGrHGd_se2fqETQ2HYAUEoA3lori4udZ-JODe94FIoAKfpa_gCVJd2vCpQqw-j1d__"
+                    src={pageData.hero.image}
                     alt="Hero"
                     className="w-full h-full object-cover"
                     style={{ transform: 'rotate(1deg)' }}
@@ -95,22 +152,22 @@ export default function HomePage() {
               <div className="flex items-center gap-3">
                 <div className="h-px flex-1 bg-gradient-to-r from-transparent to-amber-400" />
                 <span className="text-xs font-bold tracking-[0.3em] text-amber-600 uppercase">
-                  Spring 2024
+                  {pageData.hero.subtitle}
                 </span>
                 <div className="h-px flex-1 md:hidden bg-gradient-to-l from-transparent to-amber-400" />
               </div>
 
               <h2 className="text-5xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tight"
                   style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
-                <span className="block text-gray-900">PREMIUM</span>
+                <span className="block text-gray-900">{pageData.hero.title.split(' ')[0]}</span>
                 <span className="block bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 bg-clip-text text-transparent">
-                  ESSENTIALS
+                  {pageData.hero.title.split(' ')[1]}
                 </span>
               </h2>
               
               <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-md"
                  style={{ fontFamily: '"Merriweather", serif' }}>
-                Crafted for those who understand that style isn't loud—it's confident, refined, unforgettable.
+                {pageData.hero.description}
               </p>
 
               {/* CTA Button */}
@@ -147,42 +204,9 @@ export default function HomePage() {
 
           {/* Product Grid - Masonry Style */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-            {[
-              {
-                name: "Classic White",
-                price: "25",
-                badge: "ECO",
-                badgeColor: "bg-emerald-500",
-                image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDBu51dfioYrnrF9C6rK1gyMV_OU0rDb_K0YVjryyP0cD-jtpRHAkHCIOBTO21eSq_SHc0g2GsJp5nUEZDcUqJ-k0mUHRU3OJ9SNNzmSYKtgkLGrkOPzponIuOsF9IxP0fSB3uew7fulqkp4DznJ1rRtNiplQeuaEizFg9FUPmaw-_jzzaoXqHxuiNvS_aY6b2IMsoMp5cuAexXL-w4UmwVz5UUeJAezXiefhBZrCMDj8piSZaK9M9nRFJ3n_vHUB6whMxgma8dLfqu",
-                tall: false,
-              },
-              {
-                name: "Midnight Navy",
-                price: "25",
-                badge: "HOT",
-                badgeColor: "bg-rose-500",
-                image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDaF7c_QrALb0MoJZlyaJXGe42XIjZvo95DOW1vSth2JS1BSdZoWL8uZlmvgqKhQ1duOQdOj5XzpGGBMc9XWvPgeZO_OkHmV5OsKWd96Vy432LESw0J_ydCJlPpYrmbUeWJMyzmefHFkMs18hmXwjZcRlxESWqFwM8lTrp59cReBHwbmmWYmTFFJmazblEcaa0asg1BLDmjhlpYdkLdBJZOX3adS7D2sJ_EG_Po0XW6k9wxUNAG-7Z5U2IkPUjO2yp2bnfKLjQrqmiH",
-                tall: true,
-              },
-              {
-                name: "Slate Grey",
-                price: "28",
-                badge: "NEW",
-                badgeColor: "bg-amber-500",
-                image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAccnNhk9ClT99s2WruVh2rabGzEb1ioFqpLl2QkmgGtkAYGNxevR5dbRn_DmB6NCSTMrleM80Pir3lPHIKJQlTp4WTEIwxDW_8H_F6q0KtMQyvNKs_L0lMWHmUVxkkMoSe0dBpoA-FR93aPmdgfUFxusCMQKoKBFz6jSeZkBwXSQYMoK2vAHsT1Q7zhJDbrmnKeCph57LVimdRS1K66h31KJl4Tn19Rgcs2ETyEUFZFWPH4PPbzauQmK7opc6rpmUmUBxtcQU1VX8g",
-                tall: true,
-              },
-              {
-                name: "Organic Black",
-                price: "30",
-                badge: "★",
-                badgeColor: "bg-gray-900",
-                image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBFnuPORWYmQUn7-S57bWWASlL8d2jLSaYO9Ldhbn67G3sLC_jFu95f_ViBJonaouR2_uLZ_9VtHW9GNpiXK6vTYSJ4fOsA8TFeD1TqhwKk9C0fSLqTyF6ZqhZ_vT7e6Lz4BipwhKgDRHI0ykbXnnOEOq92-Ia_99AkjnOwM1Tb7PNOq9PZoXDVRX0DWsOtfQoIFzPUuZu1FZiW-Ia4Cu4FNDMckzCzY50EIlNCJdwabmNVSzrPDAsQl7oynmzXcK26a7dbCBPqh10u",
-                tall: false,
-              },
-            ].map((product, idx) => (
+            {pageData.products.map((product, idx) => (
               <div
-                key={product.name}
+                key={product.id}
                 className="group relative"
                 style={{ 
                   gridRow: product.tall ? 'span 2' : 'span 1',
