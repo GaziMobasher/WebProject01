@@ -2,6 +2,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 interface Product {
   id: string;
@@ -55,7 +56,7 @@ export default function HomePage() {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-16 h-16 border-4 border-[#32a862] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <p className="text-gray-600 font-semibold">Loading...</p>
         </div>
       </div>
@@ -74,19 +75,19 @@ export default function HomePage() {
 
   return (
     <div className="relative min-h-screen bg-[#0a0a0a] overflow-hidden">
-      {/* Ambient Background Effects */}
+      {/* Ambient Background Effects - GREEN GRADIENTS */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gradient-radial from-amber-500/20 to-transparent blur-3xl animate-pulse" 
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gradient-radial from-[#32a862]/20 to-transparent blur-3xl animate-pulse" 
              style={{ animationDuration: '8s' }} />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-gradient-radial from-rose-500/15 to-transparent blur-3xl animate-pulse" 
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-gradient-radial from-emerald-500/15 to-transparent blur-3xl animate-pulse" 
              style={{ animationDuration: '6s', animationDelay: '2s' }} />
       </div>
 
       {/* Main Container */}
       <div className="relative mx-auto w-full min-h-screen bg-white">
         
-        {/* Header with Diagonal Cut */}
-        <header className="relative h-16 md:h-20 bg-gradient-to-br from-amber-400 via-amber-500 to-orange-500 overflow-hidden">
+        {/* Header with Diagonal Cut - GREEN GRADIENT */}
+        <header className="relative h-16 md:h-20 bg-gradient-to-br from-[#32a862] via-emerald-500 to-green-600 overflow-hidden">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNjAgMTAgTSAxMCAwIEwgMTAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40" />
           
           <div className="relative h-full flex items-center justify-between px-6 md:px-12 max-w-7xl mx-auto">
@@ -96,12 +97,10 @@ export default function HomePage() {
               </svg>
             </button>
             
-            <h1 className="text-3xl font-black text-white tracking-tighter" 
-                style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
-              AURA
-            </h1>
+            {/* Empty space in center for logo */}
+            <div className="flex-1"></div>
             
-            <button className="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 transition-all">
+            <button className="-mt-3 w-10 h-10 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 transition-all -mt-1">
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>
@@ -113,14 +112,34 @@ export default function HomePage() {
                style={{ clipPath: 'polygon(0 50%, 100% 0, 100% 100%, 0 100%)' }} />
         </header>
 
+        {/* Logo Section - White Region */}
+        <section className="bg-white py-6 md:py-8 border-b border-gray-100">
+          <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-center">
+            <div className="flex items-center justify-center gap-4">
+              <Image 
+                src="/icons/logo.png" 
+                alt="AURA Logo" 
+                width={150}
+                height={60}
+                className="h-16 md:h-20 w-auto object-contain"
+                priority
+              />
+              <h1 className="text-4xl md:text-6xl font-black text-gray-900 tracking-tight" 
+                  style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+                Tee Bay
+              </h1>
+            </div>
+          </div>
+        </section>
+
         {/* Hero Section - Magazine Style */}
         <section className="px-6 md:px-12 pt-8 md:pt-16 pb-12 md:pb-20 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             
             {/* Hero Image Container */}
             <div className="relative order-2 md:order-1">
-              {/* Large Quote Mark Decoration */}
-              <div className="absolute -left-4 md:-left-8 -top-6 md:-top-12 text-[120px] md:text-[180px] font-serif text-amber-400/20 leading-none select-none z-0">
+              {/* Large Quote Mark Decoration - GREEN */}
+              <div className="absolute -left-4 md:-left-8 -top-6 md:-top-12 text-[120px] md:text-[180px] font-serif text-[#32a862]/20 leading-none select-none z-0">
                 "
               </div>
               
@@ -137,10 +156,10 @@ export default function HomePage() {
                     style={{ transform: 'rotate(1deg)' }}
                   />
                   
-                  {/* Floating Badge */}
+                  {/* Floating Badge - GREEN */}
                   <div className="absolute top-4 right-4 bg-white rounded-full px-4 py-2 shadow-lg animate-bounce"
                        style={{ animationDuration: '3s' }}>
-                    <span className="text-xs font-black text-amber-600 tracking-wider">NEW</span>
+                    <span className="text-xs font-black text-[#32a862] tracking-wider">NEW</span>
                   </div>
                 </div>
               </div>
@@ -148,19 +167,20 @@ export default function HomePage() {
 
             {/* Headline - Editorial Style */}
             <div className="space-y-4 md:space-y-6 order-1 md:order-2">
-              {/* Eyebrow Text */}
+              {/* Eyebrow Text - GREEN */}
               <div className="flex items-center gap-3">
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent to-amber-400" />
-                <span className="text-xs font-bold tracking-[0.3em] text-amber-600 uppercase">
+                <div className="h-px flex-1 bg-gradient-to-r from-transparent to-[#32a862]" />
+                <span className="text-xs font-bold tracking-[0.3em] text-[#32a862] uppercase">
                   {pageData.hero.subtitle}
                 </span>
-                <div className="h-px flex-1 md:hidden bg-gradient-to-l from-transparent to-amber-400" />
+                <div className="h-px flex-1 md:hidden bg-gradient-to-l from-transparent to-[#32a862]" />
               </div>
 
+              {/* Title with GREEN GRADIENT */}
               <h2 className="text-5xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tight"
                   style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
                 <span className="block text-gray-900">{pageData.hero.title.split(' ')[0]}</span>
-                <span className="block bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 bg-clip-text text-transparent">
+                <span className="block bg-gradient-to-r from-[#32a862] via-emerald-500 to-green-600 bg-clip-text text-transparent">
                   {pageData.hero.title.split(' ')[1]}
                 </span>
               </h2>
@@ -170,9 +190,9 @@ export default function HomePage() {
                 {pageData.hero.description}
               </p>
 
-              {/* CTA Button */}
+              {/* CTA Button - GREEN GRADIENT */}
               <button className="group relative w-full md:w-auto md:px-12 h-14 md:h-16 bg-gray-900 rounded-full overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
-                <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-orange-500 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#32a862] to-emerald-500 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                 <span className="relative z-10 flex items-center justify-center gap-2 text-white font-bold tracking-wider text-sm md:text-base uppercase">
                   Explore Collection
                   <svg className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -186,15 +206,15 @@ export default function HomePage() {
 
         {/* Products Section */}
         <section className="px-6 md:px-12 pb-24 md:pb-32 max-w-7xl mx-auto">
-          {/* Section Header - Asymmetric */}
+          {/* Section Header - GREEN ACCENT */}
           <div className="mb-6 md:mb-10 flex items-end justify-between">
             <div>
               <h3 className="text-2xl md:text-4xl font-black tracking-tight" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
                 Featured
               </h3>
-              <div className="mt-1 h-1 w-16 md:w-24 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" />
+              <div className="mt-1 h-1 w-16 md:w-24 bg-gradient-to-r from-[#32a862] to-emerald-500 rounded-full" />
             </div>
-            <button className="text-xs md:text-sm font-bold text-amber-600 tracking-wider uppercase flex items-center gap-1 hover:gap-2 transition-all">
+            <button className="text-xs md:text-sm font-bold text-[#32a862] tracking-wider uppercase flex items-center gap-1 hover:gap-2 transition-all">
               View All
               <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -240,7 +260,7 @@ export default function HomePage() {
                     </button>
                   </div>
 
-                  {/* Product Info */}
+                  {/* Product Info - GREEN PRICE */}
                   <div className="p-3 md:p-4">
                     <h4 className="text-sm md:text-base font-bold text-gray-900 mb-1 tracking-tight" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
                       {product.name}
@@ -248,7 +268,7 @@ export default function HomePage() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-baseline gap-1">
                         <span className="text-xs text-gray-400 font-medium">$</span>
-                        <span className="text-lg md:text-xl font-black text-amber-600">{product.price}</span>
+                        <span className="text-lg md:text-xl font-black text-[#32a862]">{product.price}</span>
                       </div>
                       <button className="text-gray-300 hover:text-rose-500 transition-colors">
                         <svg className="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -263,7 +283,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Bottom Navigation - Mobile Only */}
+        {/* Bottom Navigation - Mobile Only - GREEN ACTIVE STATE */}
         <nav className="md:hidden fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-white/80 backdrop-blur-xl border-t border-gray-200">
           <div className="flex items-center justify-around px-8 py-3">
             {[
@@ -275,7 +295,7 @@ export default function HomePage() {
               <button
                 key={item.label}
                 className={`flex flex-col items-center gap-1 transition-all ${
-                  item.active ? 'text-amber-600 scale-110' : 'text-gray-400 hover:text-gray-600'
+                  item.active ? 'text-[#32a862] scale-110' : 'text-gray-400 hover:text-gray-600'
                 }`}
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

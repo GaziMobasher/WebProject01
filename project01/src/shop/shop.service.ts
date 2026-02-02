@@ -7,7 +7,7 @@ export class ShopService {
     return {
       hero: {
         title: 'PREMIUM ESSENTIALS',
-        subtitle: 'Spring 2024',
+        subtitle: 'Spring 2025',
         description: 'Crafted for those who understand that style isn\'t loud—it\'s confident, refined, unforgettable.',
         image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDyWGzjuF6kTKfH3SWauVT6bwEXXjDH5w5b2zPaXGxAV_gIV2jiV7JaPay8MMDVJZI_1q_ZFaTvkozZLvmOuiRph5MMUTylwhE9IrmwDUVjoI5nZRn9ZZ67wVA2CjlvdrjEBjT76VTmxurTx0eT86_SfyyyoAyPdol3uLN6KUQK8I9TmuspemK3ljD8HwAcDuQsFuEKe3Ck_SdGrHGd_se2fqETQ2HYAUEoA3lori4udZ-JODe94FIoAKfpa_gCVJd2vCpQqw-j1d__'
       },
