@@ -148,7 +148,7 @@ export default function HomePage() {
                      transform: 'rotate(-1deg)',
                      boxShadow: '20px 20px 60px rgba(0,0,0,0.1), -20px -20px 60px rgba(255,255,255,0.5)'
                    }}>
-                <div className="aspect-[3/4] md:aspect-[4/5] relative">
+                <div className="aspect-[3/4] md:aspect-[1/1] relative">
                   <img
                     src={pageData.hero.image}
                     alt="Hero"
@@ -237,11 +237,11 @@ export default function HomePage() {
                 <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300">
                   
                   {/* Image Container */}
-                  <div className={`relative ${product.tall ? 'aspect-[3/5]' : 'aspect-square'} overflow-hidden bg-gray-100`}>
+                  <div className={`relative ${product.tall ? 'aspect-[1/1]' : 'aspect-square'} overflow-hidden bg-gray-100`}>
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-full scale-120 object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     
                     {/* Gradient Overlay */}

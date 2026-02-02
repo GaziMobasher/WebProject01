@@ -9,7 +9,7 @@ export class ShopService {
         title: 'PREMIUM ESSENTIALS',
         subtitle: 'Spring 2025',
         description: 'Crafted for those who understand that style isn\'t loud—it\'s confident, refined, unforgettable.',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDyWGzjuF6kTKfH3SWauVT6bwEXXjDH5w5b2zPaXGxAV_gIV2jiV7JaPay8MMDVJZI_1q_ZFaTvkozZLvmOuiRph5MMUTylwhE9IrmwDUVjoI5nZRn9ZZ67wVA2CjlvdrjEBjT76VTmxurTx0eT86_SfyyyoAyPdol3uLN6KUQK8I9TmuspemK3ljD8HwAcDuQsFuEKe3Ck_SdGrHGd_se2fqETQ2HYAUEoA3lori4udZ-JODe94FIoAKfpa_gCVJd2vCpQqw-j1d__'
+        image: '/images/zoot.png'
       },
       products: [
         {
@@ -18,7 +18,7 @@ export class ShopService {
           price: 25,
           badge: 'ECO',
           badgeColor: 'bg-emerald-500',
-          image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDBu51dfioYrnrF9C6rK1gyMV_OU0rDb_K0YVjryyP0cD-jtpRHAkHCIOBTO21eSq_SHc0g2GsJp5nUEZDcUqJ-k0mUHRU3OJ9SNNzmSYKtgkLGrkOPzponIuOsF9IxP0fSB3uew7fulqkp4DznJ1rRtNiplQeuaEizFg9FUPmaw-_jzzaoXqHxuiNvS_aY6b2IMsoMp5cuAexXL-w4UmwVz5UUeJAezXiefhBZrCMDj8piSZaK9M9nRFJ3n_vHUB6whMxgma8dLfqu',
+          image: '/images/akira.png',
           tall: false,
         },
         {
