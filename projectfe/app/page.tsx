@@ -3,6 +3,12 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { Exo_2 } from "next/font/google";
+
+const exo2 = Exo_2({
+  subsets: ["latin"],
+  weight: ["400", "600", "700", "800"],
+});
 
 interface Product {
   id: string;
@@ -12,6 +18,7 @@ interface Product {
   badgeColor: string;
   image: string;
   tall?: boolean;
+  scale?: number;
 }
 
 interface PageData {
@@ -77,30 +84,44 @@ export default function HomePage() {
     <div className="relative min-h-screen bg-[#0a0a0a] overflow-hidden">
       {/* Ambient Background Effects - GREEN GRADIENTS */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gradient-radial from-[#32a862]/20 to-transparent blur-3xl animate-pulse" 
-             style={{ animationDuration: '8s' }} />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-gradient-radial from-emerald-500/15 to-transparent blur-3xl animate-pulse" 
-             style={{ animationDuration: '6s', animationDelay: '2s' }} />
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gradient-radial from-[#32a862]/20 to-transparent blur-3xl animate-pulse"
+          style={{ animationDuration: '8s' }} />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-gradient-radial from-emerald-500/15 to-transparent blur-3xl animate-pulse"
+          style={{ animationDuration: '6s', animationDelay: '2s' }} />
       </div>
 
       {/* Main Container */}
       <div className="relative mx-auto w-full min-h-screen bg-white">
-        
+
+        {/* Header with Diagonal Cut - GREEN GRADIENT */}
         {/* Header with Diagonal Cut - GREEN GRADIENT */}
         <header className="relative h-16 md:h-20 bg-gradient-to-br from-[#32a862] via-emerald-500 to-green-600 overflow-hidden">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNjAgMTAgTSAxMCAwIEwgMTAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40" />
-          
-          <div className="relative h-full flex items-center justify-between px-6 md:px-12 max-w-7xl mx-auto">
-            <button className="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 transition-all">
+
+          <div className="relative h-full flex items-center justify-around px-6 md:px-12 max-w-7xl mx-auto">
+            {/* Menu Icon */}
+            <button className="-mt-3 w-10 h-10 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 transition-all">
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
-            
-            {/* Empty space in center for logo */}
-            <div className="flex-1"></div>
-            
-            <button className="-mt-4 w-10 h-10 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 transition-all -mt-1">
+
+            {/* Search Icon */}
+            <button className="-mt-3 w-10 h-10 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 transition-all">
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </button>
+
+            {/* Profile Icon */}
+            <button className="-mt-3 w-10 h-10 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 transition-all">
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </button>
+
+            {/* Shopping Bag Icon */}
+            <button className="-mt-3 w-10 h-10 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 transition-all -mt-1">
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>
@@ -108,24 +129,23 @@ export default function HomePage() {
           </div>
 
           {/* Diagonal Bottom Edge */}
-          <div className="absolute -bottom-1 left-0 right-0 h-8 bg-white" 
-               style={{ clipPath: 'polygon(0 50%, 100% 0, 100% 100%, 0 100%)' }} />
+          <div className="absolute -bottom-1 left-0 right-0 h-8 bg-white"
+            style={{ clipPath: 'polygon(0 50%, 100% 0, 100% 100%, 0 100%)' }} />
         </header>
 
         {/* Logo Section - White Region */}
         <section className="bg-white py-6 md:py-8 border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-center">
             <div className="flex items-center justify-center gap-4">
-              <Image 
-                src="/icons/logo.png" 
-                alt="AURA Logo" 
+              <Image
+                src="/icons/logo.png"
+                alt="AURA Logo"
                 width={150}
                 height={60}
                 className="h-16 md:h-20 w-auto object-contain"
                 priority
               />
-              <h1 className="text-4xl md:text-6xl font-black text-gray-900 tracking-tight" 
-                  style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+              <h1  className={`text-4xl md:text-6xl font-black text-gray-900 tracking-tight ${exo2.className}`}>
                 Tee Bay
               </h1>
             </div>
@@ -135,30 +155,30 @@ export default function HomePage() {
         {/* Hero Section - Magazine Style */}
         <section className="px-6 md:px-12 pt-8 md:pt-16 pb-12 md:pb-20 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            
+
             {/* Hero Image Container */}
             <div className="relative order-2 md:order-1">
               {/* Large Quote Mark Decoration - GREEN */}
               <div className="absolute -left-4 md:-left-8 -top-6 md:-top-12 text-[120px] md:text-[180px] font-serif text-[#32a862]/20 leading-none select-none z-0">
                 "
               </div>
-              
+
               <div className="relative z-10 overflow-hidden rounded-3xl bg-gradient-to-br from-gray-100 to-gray-200 shadow-2xl"
-                   style={{ 
-                     transform: 'rotate(-1deg)',
-                     boxShadow: '20px 20px 60px rgba(0,0,0,0.1), -20px -20px 60px rgba(255,255,255,0.5)'
-                   }}>
+                style={{
+                  transform: 'rotate(-1deg)',
+                  boxShadow: '20px 20px 60px rgba(0,0,0,0.1), -20px -20px 60px rgba(255,255,255,0.5)'
+                }}>
                 <div className="aspect-[3/4] md:aspect-[1/1] relative">
                   <img
                     src={pageData.hero.image}
                     alt="Hero"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     style={{ transform: 'rotate(1deg)' }}
                   />
-                  
+
                   {/* Floating Badge - GREEN */}
                   <div className="absolute top-4 right-4 bg-white rounded-full px-4 py-2 shadow-lg animate-bounce"
-                       style={{ animationDuration: '3s' }}>
+                    style={{ animationDuration: '3s' }}>
                     <span className="text-xs font-black text-[#32a862] tracking-wider">NEW</span>
                   </div>
                 </div>
@@ -178,15 +198,15 @@ export default function HomePage() {
 
               {/* Title with GREEN GRADIENT */}
               <h2 className="text-5xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tight"
-                  style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+                style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
                 <span className="block text-gray-900">{pageData.hero.title.split(' ')[0]}</span>
                 <span className="block bg-gradient-to-r from-[#32a862] via-emerald-500 to-green-600 bg-clip-text text-transparent">
                   {pageData.hero.title.split(' ')[1]}
                 </span>
               </h2>
-              
+
               <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-md"
-                 style={{ fontFamily: '"Merriweather", serif' }}>
+                style={{ fontFamily: '"Merriweather", serif' }}>
                 {pageData.hero.description}
               </p>
 
@@ -228,25 +248,26 @@ export default function HomePage() {
               <div
                 key={product.id}
                 className="group relative"
-                style={{ 
+                style={{
                   gridRow: product.tall ? 'span 2' : 'span 1',
                   animation: `slideUp 0.6s ease-out ${idx * 0.1}s both`
                 }}
               >
                 {/* Product Card */}
                 <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300">
-                  
+
                   {/* Image Container */}
                   <div className={`relative ${product.tall ? 'aspect-[1/1]' : 'aspect-square'} overflow-hidden bg-gray-100`}>
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full scale-120 object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-full scale-110 object-cover group-hover:scale-110 transition-transform duration-700"
+                      style={{ transform: `scale(${(product.scale || 110) / 100})` }}
                     />
-                    
+
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
+
                     {/* Badge */}
                     <div className={`absolute top-3 left-3 ${product.badgeColor} text-white text-[10px] font-black px-2.5 py-1 rounded-full shadow-lg`}>
                       {product.badge}
@@ -294,9 +315,8 @@ export default function HomePage() {
             ].map((item) => (
               <button
                 key={item.label}
-                className={`flex flex-col items-center gap-1 transition-all ${
-                  item.active ? 'text-[#32a862] scale-110' : 'text-gray-400 hover:text-gray-600'
-                }`}
+                className={`flex flex-col items-center gap-1 transition-all ${item.active ? 'text-[#32a862] scale-110' : 'text-gray-400 hover:text-gray-600'
+                  }`}
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={item.active ? 2.5 : 2} d={item.icon} />
@@ -309,6 +329,103 @@ export default function HomePage() {
           </div>
         </nav>
 
+        {/* Footer Section */}
+        <footer className="relative bg-gradient-to-br from-[#32a862] via-emerald-500 to-green-600 overflow-hidden mt-auto">
+          {/* Grid Pattern Background */}
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNjAgMTAgTSAxMCAwIEwgMTAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40" />
+
+          {/* Diagonal Top Edge */}
+          <div className="absolute -top-1 left-0 right-0 h-8 bg-white"
+            style={{ clipPath: 'polygon(0 0, 100% 50%, 100% 0)' }} />
+
+          <div className="relative max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-16">
+            {/* Main Footer Content */}
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+              {/* Left Column - Name & Title */}
+              <div className="space-y-4">
+                <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight ${exo2.className}">
+                  Gazi Muhammad Mobasher
+                </h2>
+                <p className="text-white/80 text-sm md:text-base">
+                  Aspiring Web And Software Developer
+                </p>
+              </div>
+
+              {/* Right Column - Contact Info */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-white mb-4 ${exo2.className}" >
+                  Get In Touch
+                </h3>
+
+                {/* Contact Items */}
+                <div className="space-y-3">
+                  {/* Phone */}
+                  <a href="tel:+8801794299643"
+                    className="flex items-center gap-3 text-white/90 hover:text-white transition-colors group">
+                    <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 group-hover:bg-white/30 transition-all">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                    </div>
+                    <span className="text-sm md:text-base">+880 1794 299643</span>
+                  </a>
+
+                  {/* Email */}
+                  <a href="mailto:gazimobassher@gmail.com"
+                    className="flex items-center gap-3 text-white/90 hover:text-white transition-colors group">
+                    <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 group-hover:bg-white/30 transition-all">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <span className="text-sm md:text-base">gazimobassher@gmail.com</span>
+                  </a>
+
+                  {/* LinkedIn */}
+                  <a href="https://www.linkedin.com/in/gazi-mobasher-a8259b1b3/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-white/90 hover:text-white transition-colors group">
+                    <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 group-hover:bg-white/30 transition-all">
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                      </svg>
+                    </div>
+                    <span className="text-sm md:text-base">LinkedIn Profile</span>
+                  </a>
+
+                  {/* Facebook */}
+                  <a href="https://www.facebook.com/gazimobasher2001/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-white/90 hover:text-white transition-colors group">
+                    <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 group-hover:bg-white/30 transition-all">
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                      </svg>
+                    </div>
+                    <span className="text-sm md:text-base">Facebook Profile</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Bar */}
+            <div className="mt-12 pt-8 border-t border-white/20">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                <p className="text-white/60 text-sm">
+                  © 2025 Tee Bay. All rights reserved.
+                </p>
+                <div className="flex gap-4">
+                  <a href="#" className="text-white/60 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                  <span className="text-white/40">•</span>
+                  <a href="#" className="text-white/60 hover:text-white text-sm transition-colors">Terms of Service</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+
       </div>
 
       {/* Custom Fonts */}
@@ -317,7 +434,8 @@ export default function HomePage() {
       <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
 
       {/* Global Styles */}
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @keyframes slideUp {
           from {
             opacity: 0;
